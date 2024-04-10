@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vicente</title>
+</head>
+<body>
+    <h1>Ver com quem o Vi fica</h1>
+    <label for="dataInput">Escolha uma data: </label>
+    <input type="date" id="dataInput">
+    <button onclick="calcularDiferenca()">Verificar</button>
+    <p id="resultado"></p>
+
+    <script>
+        function calcularDiferenca() {
+            var dataInput = document.getElementById("dataInput").value;
+            var partesData = dataInput.split("-"); // Divide a string da data em partes (ano, mês, dia)
+            var dataInserida = new Date(partesData[0], partesData[1] - 1, partesData[2]); // Cria um objeto de data
+            var dataFixa = new Date("2024-04-08"); // Data fixa
+			var diaSemana = dataInserida.getDay()
+			
+			var hoje = new Date()
+			
+			if(dataInserida > hoje){
+				var verbo = "fica "
+				if(diaSemana === 6){	
+					var novaData = new Date(dataInserida);
+                    novaData.setDate(dataInserida.getDate() - 1);
+					var diferencaMilissegundos = novaData - dataFixa;
+					var diferencaDias = Math.abs(Math.round(diferencaMilissegundos / (1000 * 60 * 60 * 24)));
+					var divisao = diferencaDias % 2					
+				} else if (diaSemana === 0){
+					var novaData = new Date(dataInserida);
+                    novaData.setDate(dataInserida.getDate() - 2);
+					var diferencaMilissegundos = novaData - dataFixa;
+					var diferencaDias = Math.abs(Math.round(diferencaMilissegundos / (1000 * 60 * 60 * 24)));
+					var divisao = diferencaDias % 2				
+				} else {
+					var diferencaMilissegundos = dataInserida - dataFixa;
+					var diferencaDias = Math.abs(Math.round(diferencaMilissegundos / (1000 * 60 * 60 * 24)));
+					var divisao = diferencaDias % 2
+				}
+			}else{
+				var verbo = "ficou "
+				if(diaSemana === 6){	
+					var novaData = new Date(dataInserida);
+                    novaData.setDate(dataInserida.getDate() - 1);
+					var diferencaMilissegundos = novaData - dataFixa;
+					var diferencaDias = Math.abs(Math.round(diferencaMilissegundos / (1000 * 60 * 60 * 24)));
+					var divisao = diferencaDias % 2					
+				} else if (diaSemana === 0){
+					var novaData = new Date(dataInserida);
+                    novaData.setDate(dataInserida.getDate() - 2);
+					var diferencaMilissegundos = novaData - dataFixa;
+					var diferencaDias = Math.abs(Math.round(diferencaMilissegundos / (1000 * 60 * 60 * 24)));
+					var divisao = diferencaDias % 2				
+				} else {
+					var diferencaMilissegundos = dataInserida - dataFixa;
+					var diferencaDias = Math.abs(Math.round(diferencaMilissegundos / (1000 * 60 * 60 * 24)));
+					var divisao = diferencaDias % 2
+				}
+			}
+            var resultado = document.getElementById("resultado");
+			if(divisao === 0){
+				var resultadofica = "a gente."
+			}else {
+				var resultadofica = "o pai."
+			}
+            resultado.textContent = "O vicente " + verbo + "com " + resultadofica;
+        }
+    </script>
+</body>
+</html>
