@@ -6,14 +6,54 @@
     <title>Vicente</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
         .content {
             text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        input[type="date"],
+        button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="date"]:focus,
+        button:focus {
+            outline: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        .button-container {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -22,20 +62,23 @@
         <h1>Ver com quem o Vi fica</h1>
         <label for="dataInput">Escolha uma data: </label>
         <input type="date" id="dataInput">
-        <button onclick="calcularDiferenca()">Verificar</button>
+        <div class="button-container">
+            <button onclick="calcularDiferenca()">Verificar</button>
+        </div>
         <p id="resultado"></p>
     </div>
 
     <script>
         function calcularDiferenca() {
             var dataInput = document.getElementById("dataInput").value;
-            var partesData = dataInput.split("-"); // Divide a string da data em partes (ano, mês, dia)
-            var dataInserida = new Date(partesData[0], partesData[1] - 1, partesData[2]); // Cria um objeto de data
-            var dataFixa = new Date("2024-04-08"); // Data fixa
+            var partesData = dataInput.split("-");
+            var dataInserida = new Date(partesData[0], partesData[1] - 1, partesData[2]);
+            var dataFixa = new Date("2024-04-08");
             var diaSemana = dataInserida.getDay();
             var hoje = new Date();
+			hoje.setHours(0, 0, 0, 0);
 
-            if (dataInserida > hoje) {
+            if (dataInserida >= hoje) {
                 var verbo = "fica ";
                 if (diaSemana === 6) {
                     var novaData = new Date(dataInserida);
