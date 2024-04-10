@@ -55,17 +55,23 @@
         .button-container {
             margin-top: 20px;
         }
+        #gif {
+            max-width: 20%;
+            display: none;
+            margin: auto; /* Adiciona margem automática para centralizar */
+        }
     </style>
 </head>
 <body>
     <div class="content">
-        <h1>Ver com quem o Vi fica</h1>
-        <label for="dataInput">Escolha uma data: </label>
+        <h1>Escolha uma data</h1>
+        <!--<label for="dataInput">Escolha uma data: </label> -->
         <input type="date" id="dataInput">
         <div class="button-container">
             <button onclick="calcularDiferenca()">Verificar</button>
         </div>
-        <p id="resultado"></p>
+        <h1><p id="resultado"></p></h1>
+        <img src="https://www.creativosonline.org/wp-content/uploads/2022/03/GIF-Simpsons.gif" alt="GIF" id="gif">
     </div>
 
     <script>
@@ -76,7 +82,7 @@
             var dataFixa = new Date("2024-04-08");
             var diaSemana = dataInserida.getDay();
             var hoje = new Date();
-			hoje.setHours(0, 0, 0, 0);
+            hoje.setHours(0, 0, 0, 0);
 
             if (dataInserida >= hoje) {
                 var verbo = "fica ";
@@ -118,12 +124,16 @@
                 }
             }
             var resultado = document.getElementById("resultado");
+            var gif = document.getElementById("gif");
+
             if (divisao === 0) {
                 var resultadofica = "a gente.";
+                gif.style.display = "block"; // Exibir o GIF
             } else {
                 var resultadofica = "o pai.";
+                gif.style.display = "none"; // Ocultar o GIF
             }
-            resultado.textContent = "O vicente " + verbo + "com " + resultadofica;
+            resultado.textContent = "O Vicente " + verbo + "com " + resultadofica;
         }
     </script>
 </body>
