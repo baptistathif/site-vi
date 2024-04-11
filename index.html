@@ -60,6 +60,11 @@
             display: none;
             margin: auto; /* Adiciona margem automática para centralizar */
         }
+		#gif2 {
+            max-width: 200px;
+            display: none;
+            margin: auto; /* Adiciona margem automática para centralizar */
+        }
     </style>
 </head>
 <body>
@@ -72,6 +77,9 @@
         </div>
         <h1><p id="resultado"></p></h1>
         <img src="https://www.creativosonline.org/wp-content/uploads/2022/03/GIF-Simpsons.gif" alt="GIF" id="gif">
+		<img src="https://i.gifer.com/Nt.gif" alt="GIF" id="gif2">
+
+		
     </div>
 
     <script>
@@ -125,13 +133,16 @@
             }
             var resultado = document.getElementById("resultado");
             var gif = document.getElementById("gif");
+			var gif2 = document.getElementById("gif2");
 
             if (divisao === 0) {
                 var resultadofica = "a gente.";
                 gif.style.display = "block"; // Exibir o GIF
+				gif2.style.display = "none"; // Exibir o GIF
             } else {
                 var resultadofica = "o pai.";
                 gif.style.display = "none"; // Ocultar o GIF
+				gif2.style.display = "block"; // Exibir o GIF
             }
             resultado.textContent = "O Vicente " + verbo + "com " + resultadofica;
         }
